@@ -74,6 +74,8 @@ void MainWindow::ManageLayout() {
   connect(calendar_, &QCalendarWidget::clicked, this, &MainWindow::NewDateSelected);
 
   connect(count_, &QSpinBox::valueChanged, view_, [&](int new_value) {
+    goal_view_->setVisible(false);
+
     if (kNeedReset) {
       GoalsOnDate& current_goals = dates_events[calendar_->selectedDate()];
       current_goals.number_of_goals_ = count_->value();
